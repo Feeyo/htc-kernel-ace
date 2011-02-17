@@ -878,6 +878,11 @@ config LOW_FREQ
 	default n
         depends on CPU_FREQ && !PERFLOCK
 
+config NUTTER
+	bool "Nutter mode max 2Ghz"
+	default n
+	depends on CPU_FREQ && !PERFLOCK
+
 config OLD_WIFI
 	bool "set old wifi for old sense"
 	default n
@@ -1189,7 +1194,4 @@ config PROC_COMM_TIMEOUT_RESET
 		To reset device while modem hang, and cannot respond proc_comm.
 		Enable this might cause slight overhead on each proc_comm call.
 
-config NUTTER
-	bool "Nutter mode"
-	default n
-	depends on CPU_FREQ && !PERFLOCK
+
