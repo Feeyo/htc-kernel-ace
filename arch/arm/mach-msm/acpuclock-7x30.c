@@ -56,7 +56,11 @@
 #define PLL2_L_VAL_ADDR  (MSM_CLK_CTL_BASE + 0x33c)
 
 #define ACE_ACPU_MIN_UV_MV 750U
+#ifdef CONFIG_NUTTER
+#define ACE_ACPU_MAX_UV_MV 1500U
+#else
 #define ACE_ACPU_MAX_UV_MV 1350U
+#endif
 
 struct clock_state {
 	struct clkctl_acpu_speed	*current_speed;
@@ -108,7 +112,7 @@ static struct cpufreq_frequency_table freq_table[] = {
 	{ 22, 1228800 },
 #ifdef CONFIG_LOW_FREQ
 	{ 23, CPUFREQ_TABLE_END },
-#else
+#else //!CONFIG_LOW_FREQ
 	{ 23, 1267200 },
 	{ 24, 1305600 },
 	{ 25, 1344000 },
@@ -116,9 +120,25 @@ static struct cpufreq_frequency_table freq_table[] = {
 	{ 27, 1420800 },
 	{ 28, 1459200 },
 	{ 29, 1497600 },
-	{ 30, 1516800 },
-	//{ 31, 1536000 },
-	{ 31, CPUFREQ_TABLE_END },
+#ifndef CONFIG_NUTTER
+	{ 30, CPUFREQ_TABLE_END },
+#else //CONFIG_NUTTER
+	{ 30, 1536000 },
+	{ 31, 1574400 },
+	{ 32, 1612800 },
+	{ 33, 1651200 },
+	{ 34, 1689600 },
+	{ 35, 1728000 },
+	{ 36, 1766400 },
+	{ 37, 1804800 },
+	{ 34, 1843200 },
+	{ 35, 1881600 },
+	{ 36, 1920000 },
+	{ 37, 1958400 },
+	{ 37, 1996800 },
+	{ 37, 2016000 },
+	{ 38, CPUFREQ_TABLE_END },
+#endif
 #endif
 };
 
@@ -154,19 +174,32 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 1113600, PLL_2,   3, 0,  192000, 1125, VDD_RAW(1100) },
 	{ 1152000, PLL_2,   3, 0,  192000, 1150, VDD_RAW(1125) },
 	{ 1190400, PLL_2,   3, 0,  192000, 1150, VDD_RAW(1150) },
-#ifdef CONFIG_LOW_FREQ
 	{ 1228800, PLL_2,   3, 0,  192000, 1200, VDD_RAW(1175) },
-#else
+#ifndef CONFIG_LOW_FREQ
 	{ 1267200, PLL_2,   3, 0,  192000, 1200, VDD_RAW(1200) },
 	{ 1305600, PLL_2,   3, 0,  192000, 1250, VDD_RAW(1250) },
 	{ 1344000, PLL_2,   3, 0,  192000, 1250, VDD_RAW(1250) },
 	{ 1382400, PLL_2,   3, 0,  192000, 1250, VDD_RAW(1250) },
-	{ 1420800, PLL_2,   3, 0,  192000, 1250, VDD_RAW(1275) },
+	{ 1420800, PLL_2,   3, 0,  192000, 1250, VDD_RAW(1250) },
 	{ 1459200, PLL_2,   3, 0,  192000, 1275, VDD_RAW(1275) },
 	{ 1497600, PLL_2,   3, 0,  192000, 1300, VDD_RAW(1300) },
-	{ 1516800, PLL_2,   3, 0,  192000, 1300, VDD_RAW(1300) },
-//	{ 1536000, PLL_2,   3, 0,  192000, 1300, VDD_RAW(1300) },
-#endif
+#ifdef CONFIG_NUTTER
+	{ 1536000, PLL_2,   3, 0,  192000, 1325, VDD_RAW(1325) },
+	{ 1574400, PLL_2,   3, 0,  192000, 1325, VDD_RAW(1325) },
+	{ 1612800, PLL_2,   3, 0,  192000, 1350, VDD_RAW(1350) },
+	{ 1651200, PLL_2,   3, 0,  192000, 1350, VDD_RAW(1350) },
+	{ 1689600, PLL_2,   3, 0,  192000, 1375, VDD_RAW(1375) },
+	{ 1728000, PLL_2,   3, 0,  192000, 1375, VDD_RAW(1375) },
+	{ 1766400, PLL_2,   3, 0,  192000, 1400, VDD_RAW(1400) },
+	{ 1804800, PLL_2,   3, 0,  192000, 1425, VDD_RAW(1425) },
+	{ 1843200, PLL_2,   3, 0,  192000, 1425, VDD_RAW(1425) },
+	{ 1881600, PLL_2,   3, 0,  192000, 1425, VDD_RAW(1425) },
+	{ 1920000, PLL_2,   3, 0,  192000, 1450, VDD_RAW(1450) },
+	{ 1958400, PLL_2,   3, 0,  192000, 1450, VDD_RAW(1450) },
+	{ 1996800, PLL_2,   3, 0,  192000, 1450, VDD_RAW(1450) },
+	{ 2016000, PLL_2,   3, 0,  192000, 1450, VDD_RAW(1450) },
+#endif //CONFIG_NUTTER
+#endif //!CONFIG_LOW_FREQ
 	{ 0 }
 };
 static unsigned long max_axi_rate;
