@@ -1921,7 +1921,7 @@ void ddl_set_initial_default_values(struct ddl_client_context_type *p_ddl)
 		vcd_fw_transact(TRUE, FALSE,
 			p_encoder->codec_type.e_codec);
 
-		p_encoder->target_bit_rate.n_target_bitrate = 128000;
+		p_encoder->target_bit_rate.n_target_bitrate = 96000;
 		p_encoder->frame_size.n_width = 176;
 		p_encoder->frame_size.n_height = 144;
 		p_encoder->frame_size.n_stride = 176;
