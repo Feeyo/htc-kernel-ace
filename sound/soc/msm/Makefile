@@ -18,6 +18,18 @@ obj-$(CONFIG_SND_QSD_SOC) += snd-soc-qsd.o
 # MSM Machine Support
 snd-soc-msm7k-objs := msm7201.o
 obj-$(CONFIG_SND_MSM_SOC_MSM7K) += snd-soc-msm7k.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += audpp.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += audmgr.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_driver.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_6225.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_vfe_verify_cmd.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_lpm_verify_cmd.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_videoenc_verify_cmd.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_video_verify_cmd.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_jpeg_verify_cmd.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_vfe_patch_event.o
+obj-$(CONFIG_SND_MSM_SOC_MSM7K) += adsp_jpeg_patch_event.o
 
 snd-soc-msm7kv2-objs := msm7x30.o
 obj-$(CONFIG_SND_MSM_SOC_MSM7KV2) += snd-soc-msm7kv2.o
