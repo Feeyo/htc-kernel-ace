@@ -89,7 +89,8 @@ int msm_pcm_probe(struct platform_device *devptr)
 
 	codec->name = "MSM-CARD";
 	codec->owner = THIS_MODULE;
-	socdev->codec = codec;
+	//socdev->codec = codec;
+	socdev->card->codec=codec;
 	mutex_init(&codec->mutex);
 
 	INIT_LIST_HEAD(&codec->dapm_widgets);
@@ -102,7 +103,8 @@ int msm_pcm_probe(struct platform_device *devptr)
 		goto __nopcm;
 	}
 
-	card = socdev->codec->card;
+	//card = socdev->codec->card;
+	card = socdev->card;
 
 	ret = snd_soc_init_card(socdev);
 	if (ret < 0) {
